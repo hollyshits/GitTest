@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starry.dao.IDoctorDao">
+    <update id="updateArticle" parameterType="com.starry.entity.Article">
+		UPDATE
+		article
+		<set>
+        articleUserId = #{articleUserId,jdbcType=INTEGER},
+        articleTitle = #{articleTitle,jdbcType=VARCHAR},
+        articleViewCount = #{articleViewCount,jdbcType=INTEGER},
+        articleCommentCount = #{articleCommentCount,jdbcType=INTEGER},
+        articleLikeCount = #{articleLikeCount,jdbcType=INTEGER},
+        articleCreateTime = #{articleCreateTime,jdbcType=TIMESTAMP},
+        articleUpdateTime = #{articleUpdateTime,jdbcType=TIMESTAMP},
+        articleIsComment = #{articleIsComment,jdbcType=INTEGER},
+        articleStatus = #{articleStatus,jdbcType=INTEGER},
+        articleOrder = #{articleOrder,jdbcType=INTEGER},
+        articleContent = #{articleContent,jdbcType=LONGVARCHAR},
+        articleSummary = #{articleSummary,jdbcType=VARCHAR},
+        </set>
+    where articleId = #{articleId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getdocSchebydate" parameterType="java.lang.String" resultType="com.starry.entity.Sch">
+		SELECT s.*,d.name
+		FROM sche s,doctor d
+		WHERE s.`dNumber`=d.`dNumber` AND s.`sTime` LIKE concat(#{date},'%')
+	</select>
+
+	<select id="getOrderBySnumber" resultType="com.starry.entity.Order">
+		select *from uorder
+		where sNumber=#{sNumber}
+	</select>
+
+
+	<update id="updateCommentCount" parameterType="java.lang.Integer">
+		UPDATE
+		article
+		SET articleCommentCount =
+		(
+		SELECT count(*) FROM `comment`
+		WHERE article.articleId=comment.commentArticleId
+		)
+		WHERE articleId=#{articleId}
+	</update>
+
+
+	<insert id="insertComment" parameterType="com.starry.entity.Comment" useGeneratedKeys="true" keyProperty="commentId">
+		insert into
+		comment
+		(commentPid, commentPname, commentArticleId,
+		commentAuthorName, commentAuthorEmail,
+		commentAuthorUrl, commentAuthorAvatar, commentContent, commentAgent,
+		commentIp, commentCreateTime, commentRole)
+		values (#{commentPid,jdbcType=INTEGER}, #{commentPname,jdbcType=VARCHAR}, #{commentArticleId,jdbcType=INTEGER},
+		#{commentAuthorName,jdbcType=VARCHAR}, #{commentAuthorEmail,jdbcType=VARCHAR},
+		#{commentAuthorUrl,jdbcType=VARCHAR},#{commentAuthorAvatar}, #{commentContent,jdbcType=VARCHAR},
+		#{commentAgent,jdbcType=VARCHAR},
+		#{commentIp,jdbcType=VARCHAR}, #{commentCreateTime,jdbcType=TIMESTAMP}, #{commentRole,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getCommentById" resultType="com.starry.entity.Comment">
+        SELECT
+        *
+        FROM
+        comment
+        where
+        commentId = #{id}
+
+    </select>
+
+	<select id="listChildComment" resultType="com.starry.entity.Comment" >
+		SELECT
+		*
+		FROM
+		comment
+		WHERE
+		commentPid=#{id}
+
+	</select>
+
+
+
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		DELETE
+		from comment
+		where commentId=#{id}
+	</delete>
+
+
+	<select id="getArticle" resultType="com.starry.entity.Article">
+        SELECT
+        *
+        FROM
+        article
+        where
+        articleId = #{id}
+
+    </select>
+
+	<select id="listCommentByArticleId" resultType="com.starry.entity.Comment">
+		SELECT
+		*
+		FROM
+		comment
+		WHERE
+		commentArticleId = #{id}
+		ORDER BY commentId ASC
+	</select>
+
+<select id="doctorlogin" resultType="com.starry.entity.Doctor">
+		select * from doctor
+		where
+		dNumber=#{dNumber} and dPwd=#{dPwd}
+	</select>
+
+	<select id="gettodayorder" resultType="com.starry.entity.Order" parameterType="java.util.HashMap">
+		select *from uorder
+		where
+		docid=#{docid} and oTime like concat(#{date},'%')
+
+	</select>
+
+
+	<!--查看指定order-->
+	<select id="getorder" parameterType="java.util.HashMap" resultType="com.starry.entity.Order">
+		select * from uorder
+		where
+		sNumber=#{schid,jdbcType=INTEGER} and oTime=#{timediv}
+	</select>
+
+	<update id="changePvStatus" parameterType="java.util.HashMap">
+		update perioddivision
+		set state=#{status}
+		where pid=#{oNumber}
+	</update>
+
+
+	<update id="changeOrderStatus" parameterType="java.util.HashMap">
+		update uorder
+		set status=#{status}
+		where oNumber=#{oNumber}
+	</update>
+
+	<!--获取医生的Sche-->
+	<select id="getdocSche" resultType="com.starry.entity.Sch">
+		select * from sche
+		where
+		dNumber=#{dNumber}
+		order by sNumber desc
+	</select>
+	<!--获取特定的pv-->
+	<select id="getdocPv" resultType="com.starry.entity.perioddivision">
+		select * from perioddivision
+		where
+		Schid=#{schid}
+	</select>
+
+	<select id="getDname" resultType="java.lang.String">
+		select dName from department
+		where
+		cNumber=#{cNumber}
+	</select>
+
+
+
+	<!--获取医生的排班信息-->
+	<select id="getSchs" resultType="com.starry.entity.Sch">
+		select *from sche where dNumber=#{dNumber} and status=1 and rest>0 order by sTime
+	</select>
+
+	<!--获取该医生的分时单预约信息-->
+	<select id="getPvs" resultType="com.starry.entity.perioddivision">
+		select *from perioddivision where Schid=#{schid} and state=1 order by timeDiv
+	</select>
+	<select id="getAllDoctor" resultType="com.starry.entity.DoctorInfo">
+		<!-- select *,department.dName from Doctor,department where doctor.cNumber=department.cNumber -->
+		select dNumber,name,department.dName,dTel,dInfo,dEmail,image,dResume
+		from Doctor,department 
+		where doctor.cNumber=department.cNumber
+	</select>
+
+	<delete id="deleteByNumber" parameterType="com.starry.entity.Doctor">
+		delete from doctor
+		where dNumber=#{dNumber}
+	</delete>
+	<insert id="addDoctor"  parameterType="com.starry.entity.Doctor">
+      insert into 
+      doctor (dNumber,name,dPwd,cNumber,dInfo,dResume,dTel,dEmail,image) 
+      values (#{dNumber},#{name},#{dPwd},#{cNumber},#{dInfo},#{dResume},#{dTel},#{dEmail},#{image})
+     </insert>
+
+	<select id="getByDepart" resultType="com.starry.entity.Doctor">
+     select * from doctor where cNumber =#{cNumber}
+     </select>
+
+
+     <select id="getDoctorById" resultType="com.starry.entity.Doctor">
+     select * from doctor where dNumber =#{dNumber}
+     </select>
+     
+     <update id="updateDoctor" parameterType="com.starry.entity.Doctor">
+     update doctor 
+     set name=#{name},cNumber=#{cNumber},dInfo=#{dInfo},dResume=#{dResume},dTel=#{dTel},dEmail=#{dEmail}
+     where dNumber=#{dNumber}
+     </update>
+     <select id="getDById" resultType="com.starry.entity.DoctorInfo">
+	 	select dNumber,name,department.dName,dTel,dInfo,dEmail  
+	 	from Doctor,department 
+	 	 where dNumber=#{dNumber} and doctor.cNumber=department.cNumber
+	</select>
+	<select id="getDoctorByName" resultType="com.starry.entity.DoctorInfo">
+	select dNumber,name,department.dName,dTel,dInfo,dEmail  
+	 	from Doctor,department 
+	 	 where name LIKE CONCAT(CONCAT('%', #{name}), '%')and doctor.cNumber=department.cNumber
+	</select>
+	<select id="getDoctorBycNumber" resultType="com.starry.entity.DoctorInfo">
+	select dNumber,name,department.dName,dTel,dInfo,dEmail  
+	 	from Doctor,department 
+	 	 where doctor.cNumber=#{cNumber}and doctor.cNumber=department.cNumber
+	</select>
+	
+	<select id="getOrderbyDoctor" resultType="com.starry.entity.OrderInfo">
+		select uorder.oNumber,user.uname,doctor.name,uorder.price ,uorder.oTime,uorder.status
+		from uorder,sche,user,doctor 
+		where uorder.id=user.id and uorder.sNumber=sche.sNumber and sche.dNumber=doctor.dNumber and doctor.dNumber=#{dNumber} order by uorder.oTime desc
+	</select>
+	
+	<!--json  -->
+<!-- 	String dNumber, String dName, String name,
+			String dTel, String dInfo, String dEmail, String dResume,
+			String img, Integer total, String price, String sTime, String eTime -->
+	<select id="JsonDoctor" resultType="com.starry.entity.DoctorInfoJson">
+				select doctor.dNumber,department.dName,doctor.name,doctor.dTel,doctor.dInfo,doctor.dEmail,doctor.dResume,	doctor.image,sche.total,sche.price,sche.sTime,sche.eTime
+					from doctor LEFT JOIN sche on doctor.dNumber=sche.dNumber 
+					 LEFT JOIN department	on department.cNumber=doctor.cNumber
+			    where doctor.dNumber=#{dNumber} and doctor.cNumber=#{cNumber}
+	
+	</select>
+		<select id="JsonAllDoctor" resultType="com.starry.entity.Jsondoctor">
+			select doctor.dNumber,department.dName,doctor.name,doctor.dInfo,doctor.image
+			from doctor,department
+			where  doctor.cNumber=department.cNumber and department.cNumber=#{cNumber}
+	
+	</select>
+	<select id="JsonDoctorByName" resultType="com.starry.entity.Jsondoctor">
+			select doctor.dNumber,department.dName,doctor.name,doctor.dInfo,doctor.image
+			from doctor,department
+			where  doctor.cNumber=department.cNumber and doctor.name LIKE CONCAT(CONCAT('%', #{name}), '%')
+	
+	</select>
+	<select id="JsonDoctorStop" resultType="com.starry.entity.DoctorInfoJson">
+			select doctor.dNumber,department.dName,doctor.name,doctor.dInfo,doctor.image
+			from doctor,department,sche
+			where  doctor.cNumber=department.cNumber and sche.cNumber=doctor.dNumber and #{time} &lt; sche.sTime and #{time} &gt; sche.eTime
+	
+	</select>
+</mapper>

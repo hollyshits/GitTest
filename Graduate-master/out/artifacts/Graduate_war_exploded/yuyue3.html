@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery表单美化实例代码 - 站长素材</title>
+
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/jquery.js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script language="javascript">
+$(function(){
+	function test(func){
+		var start = new Date().getTime();
+		func();
+		var end = new Date().getTime();
+		return (end - start)+"ms";
+	}
+	$('.form').inform();
+});
+</script>
+
+</head>
+<body>
+
+<div class="form">
+	<form action="" method="get">
+	<div class="item">
+		<span>用户名：</span>
+		<label><input type="text" name="username" value="test" class="width" placeholder="用户名" /></label>
+	</div>
+	<div class="item">
+		<span>密　码：</span>
+		<label><input type="password" name="password" placeholder="密　码" /></label>
+	</div>
+	<div class="item">
+		<span>性　别：</span>
+		<label><input type="radio" checked name="gender" value="1">男</label>&nbsp;
+		<label><input type="radio" name="gender" value="2">女</label>&nbsp;
+		<label><input type="radio" name="gender" value="0" disabled />人妖</label>
+	</div>
+	<div class="item">
+		<span>学　历：</span>
+		<label>
+			<select name="edu" data-ratio="true">
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+			</select>
+		</label>
+	</div>
+	<div class="item">
+		<span>学　历：</span>
+		<label>
+			<select name="edu" data-ratio="true">
+				<optgroup label="高学历">
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+				</optgroup>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+			</select>
+		</label>
+	</div>
+	<div class="item">
+		<span>学　历：</span>
+		<label>
+			<select name="edu" data-ratio="true">
+				<optgroup label="高学历">
+					<option value="5">博士后</option>
+					<option value="4">研究生</option>
+					<option value="3">本科</option>
+				</optgroup>
+					<option value="2">专科</option>
+					<option value="1">高中</option>
+					<option value="0">初中</option>
+			</select>
+		</label>
+	</div>
+	<div class="item">
+		<span>爱　好：</span>
+		<label><input type="checkbox" data-checked="full" id="c1" name="like" value="1">篮球</label>&nbsp;
+		<label><input type="checkbox" checked name="like" value="2">足球</label>&nbsp;
+		<label><input type="checkbox" name="like" value="3">游泳</label>&nbsp;
+		<label><input type="checkbox" name="like" value="4" checked />动漫</label>
+	</div>
+	<div class="item">
+		<span>备　注：</span>
+		<label><textarea name="message" class="width" placeholder="备注"></textarea></label>
+	</div>
+	<div class="item">
+		<span></span>
+		<label><button type="submit">提交</button></label>
+		<label><button type="reset">重置</button></label>
+	</div>
+	</form>
+</div>
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>

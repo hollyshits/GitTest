@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>jQuery医生坐诊时间表代码 - 站长素材</title>
+
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
+</head>
+<body>
+
+<div class="hd">
+	<div class="hd_bg">
+		<img src="img/bg.png">
+	</div>
+	<div class="hd_con">
+		<div class="con clearfix">
+			<div class="hd_head float-left">
+				<img src="img/doctor.png">
+			</div>
+			<div class="hd_info float-left">
+				<div class="doctor_name">
+					医生姓名
+				</div>
+				<div class="doctor_address">
+					坐诊地点：出诊地点
+				</div>
+				<div class="doctor_speciality">
+					擅长领域：擅长领域
+				</div>
+				<div class="doctor_experience">
+					医生经历：医生经历
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>
+
+<div class="line"></div>
+
+<div class="doctor_con">
+	<div class="con">
+		<div class="tab">
+			<div class="tab_hd clearfix text-center">
+				<div class="active float-left"><a href="#doctor_index">医生首页</a></div>
+				<div class="float-left"><a href="#doctor_evaluate">就诊评价</a></div>
+			</div>
+			<div class="tab_con">
+				<div id="doctor_index" class="doctor_pane active">
+					<table border="0" cellspacing="0" cellpadding="0" class="doctor_table" width="1200">
+						<tr>
+							<td class="tb_header">时间地点</td>
+							<td colspan="9"><div>福建省立医院</div></td>
+						</tr>
+						<tr>
+							<td class="tb_header">时段</td>
+							<td rowspan="4" class="arrow_left"><div><img src="img/left.png"></div></td>				
+							<td rowspan="4" class="arrow_right right_active"><div><img src="img/right_active.png"></div></td>
+						</tr>
+						<tr>
+							<td class="tb_header">上午</td>
+						</tr>
+						<tr>
+							<td class="tb_header">下午</td>	
+						</tr>
+						<tr>
+							<td class="tb_header">夜诊</td>
+						</tr>
+					</table>
+				</div>
+				<div id="doctor_evaluate" class="doctor_pane">
+					这里是就诊评价的内容
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+@charset "utf-8";
+input,select,textarea,button { outline:0; font-size: 12px; }
+.form { border:1px solid #DDD; font-size:12px; padding:20px; overflow:hidden; margin:20px; }
+.item { padding:20px 0; border-bottom:1px solid #EEE; line-height:38px; }
+.item span { display:inline-block; vertical-align:top; }
+.item select { width:50%; }
+.item .width { width:500px; }
+
+.inElement { display:inline-block; _zoom:1; *display:inline; }
+.inElement label { transition:all .5s; }
+.inElement label:focus { background:#eee; }
+.inRadio label { display:block; background:url(../images/form-radio-check-normal.png) no-repeat left center; padding-left:22px; cursor:pointer; }
+.inRadio label.hover { background-image:url(../images/form-radio-checke-hover.png); }
+.inRadio label.checked { background-image:url(../images/form-radio-checked-normal.png); }
+.inRadio label.focus { background-image:url(../images/form-radio-checked-hover.png); }
+.inRadio label.full { background-image:url(../images/form-radio-full.png); }
+.inRadio label.disabled { background-image:url(../images/form-radio-disabled.png); color:#999; cursor:not-allowed; }
+.inRadio.checked label.hover { background-image:url(../images/form-radio-checked-hover.png); }
+.inRadio.checked label.focus { background-image:url(../images/form-radio-checked-hover.png); }
+.inCheckbox label { display:block; background:url(../images/form-check-check-normal.png) no-repeat left center; padding-left:22px; cursor:pointer; }
+.inCheckbox label.hover { background-image:url(../images/form-check-check-hover.png); }
+.inCheckbox label.checked { background-image:url(../images/form-check-checked-normal.png); }
+.inCheckbox label.focus { background-image:url(../images/form-check-check-hover.png); }
+.inCheckbox label.full { background-image:url(../images/form-check-full.png); }
+.inCheckbox label.disabled { background-image:url(../images/form-check-disabled.png); color:#999; cursor:not-allowed; }
+.inCheckbox.checked label.hover { background-image:url(../images/form-check-checked-hover.png); }
+.inCheckbox.checked label.focus { background-image:url(../images/form-check-checked-hover.png); }
+.inText label { display:block; _zoom:1; *display:inline; border:1px solid #DDD; }
+.inText label.hover { border-color:#1E5EBF; }
+.inText label.focus { border-color:#1E5EBF; box-shadow:0 0 5px 0 rgba(30,94,191,.5); }
+.inText input { border:0; margin:0; padding:10px; box-sizing:border-box; }
+.inTextarea label { display:block; border:1px solid #DDD; }
+.inTextarea label.hover { border-color:#1E5EBF; }
+.inTextarea label.focus { border-color:#1E5EBF; box-shadow:0 0 5px 0 rgba(30,94,191,.5); }
+.inTextarea label textarea { border:0; margin:0; padding:10px; box-sizing:border-box; }
+.inSelect label { display:block; width:100%; border:1px solid #DDD; font-weight:normal; color:#353535; vertical-align:top; overflow:hidden;  margin:0; padding:0; z-index:2; position:relative; box-sizing:border-box; }
+.inSelect label span,
+.inSelect label em { height:36px; line-height:36px; display:inline-block; vertical-align:top;}
+.inSelect label span { float:left; padding:0 10px; left:0; }
+.inSelect label em { float:right; width:30px; background:url(../images/form-select-arrow-down.png) no-repeat center center; transition:all .5s; }
+.inSelect label em.open { background-image:url(../images/form-select-arrow-up.png); }
+.inSelect label.hover { border-color:#1E5EBF; }
+.inSelect label.hover em { background-image:url(../images/form-select-arrow-down-on.png); }
+.inSelect label.hover em.open { background-image:url(../images/form-select-arrow-up-on.png); }
+.inSelect label.focus { border-color:#1E5EBF; box-shadow:0 0 5px 0 rgba(30,94,191,.5); }
+.inSelect label.focus em { background-image:url(../images/form-select-arrow-down-on.png); }
+.inSelect label.focus em.open { background-image:url(../images/form-select-arrow-up-on.png); }
+.inSelect label.disabled { background:#F5F5F5; color:#999; cursor:not-allowed; }
+.inSelect .dropbox { width:100%; margin:0; padding:0; border:1px solid #DDD; clear:both; background:#FFF; z-index:1; left:0; box-sizing:border-box; border-top:0; z-index:-1; }
+.inSelect .dropbox .listbox dl,
+.inSelect .dropbox .listbox .option,
+.inSelect .dropbox .listbox .optgroup { list-style:none; margin:0; padding:0;}
+.inSelect .dropbox .listbox .option a,
+.inSelect .dropbox .listbox .optgroup a { display:block; text-decoration:none; color:#353535; margin:0px; cursor:default; }
+.inSelect .dropbox .listbox .option a span,
+.inSelect .dropbox .listbox .optgroup a span { display:block; margin-left:10px; line-height:25px; }
+.inSelect .dropbox .listbox .optgroup dt a { color:#000; font-weight:bold; margin:0px; }
+.inSelect .dropbox .listbox .selected { background-color:#F3F3F3; }
+.inSelect .dropbox .listbox .hover a { background-color:#1E5EBF; color:#FFF; }
+.inSelect .dropbox .listbox .option a:hover { background-color:#1E5EBF; color:#FFF; }
+.inSelect .dropbox .listbox .option a:hover span.selected { background-color:#1E5EBF; color:#FFF; }
+.inSelect .dropbox .listbox dd.disabled a { background-color:#FFF; color:#999; cursor:not-allowed; }
+.inSelect .dropbox .listbox dd.disabled a:hover { background-color:#FFF; color:#999; }
+.inSelect .dropbox .listbox dd.disabled a span.selected { background-color:#FFF; }
+.inSelect .dropbox .listbox dd.disabled a:hover span.selected { background-color:#FFF; color:#999; }
+.inSelect .dropbox .listbox dd.option { overflow:hidden; }
+.inSelect .dropbox .listbox dd.option a span { display:inline-block; }
+.inSelect .dropbox .listbox dd .option a span { margin-left:20px; }
+.inSelect .dropbox .multiple dd.option a span { background:url(../images/form-select-check-normal.png) no-repeat left center; padding-left:22px; }
+.inSelect .dropbox .multiple dd.option a:hover span { background-image:url(../images/form-select-check-hover.png); }
+.inSelect .dropbox .multiple dd.selected a span { background-image:url(../images/form-select-checked-normal.png); }
+.inSelect .dropbox .multiple dd.selected a:hover span { background-image:url(../images/form-select-checked-hover.png); }
+.inSelect .dropbox .multiple dd.disabled a span { background-image:url(../images/form-select-check-disabled.png); }
+.inSelect .dropbox .multiple dd.disabled a:hover span { background-image:url(../images/form-select-check-disabled.png); }
+.inSelect .dropbox .multiple dd.disabled a span.selected { background-image:url(../images/form-select-checked-disabled.png); }
+.inSelect .dropbox .multiple dd.disabled dt a span { background-image:none; }
+.inSelect .dropbox .multiple dd.disabled dt a:hover span { background-image:none; }

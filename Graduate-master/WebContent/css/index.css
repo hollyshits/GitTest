@@ -1,0 +1,138 @@
+*{padding: 0;margin: 0;}
+body,html{
+	background: #fafafa;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-none {
+  float: none !important;
+}
+.text-center{
+	text-align: center;
+}
+.con{
+	width: 1200px;
+	margin: 0 auto;
+}
+.hd{
+	position: relative;
+}
+.hd_bg img{
+	width: 100%;
+}
+.hd_con{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 50px;
+}
+.hd_head{
+	background: #FFFFFF;
+	width: 100px;
+	margin-right: 50px;
+}
+.hd_head img{
+	width: 100%;
+}
+.doctor_name{
+	font-size: 45px;	
+}
+.line{
+	height: 45px;
+	background: #d3ece9;
+}
+.doctor_con{
+	margin-top: -45px;
+}
+.tab .tab_hd div{
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	width: 100px;
+	height: 45px;
+	line-height: 45px;
+}
+.tab .tab_hd div a{
+	color: #7d98a1;
+}
+.tab .tab_hd .active{
+	border-left: none;
+	border-right: none;
+	border-top: 2px solid #508b9b;
+	background: #fafafa;
+}
+.tab_con{
+	margin-top: 20px;
+}
+.tab_con .doctor_pane{
+	display: none;
+}
+.tab_con .active{
+	display: block;
+}
+.doctor_table{
+	border: 1px solid #e5e5e5;
+	border-top: 2px solid #508b9b;
+}
+.doctor_table tr td{
+	text-align: center;
+	border-bottom: 1px dashed #e5e5e5;
+	border-right: 1px dashed #E5E5E5;
+	height: 50px;
+}
+.doctor_table tr:last-child td{
+	border-bottom: none;
+}
+.doctor_table tr .arrow_left,.doctor_table tr .arrow_right{
+	width: 40px;
+	border-bottom: none;
+	cursor: not-allowed;
+}
+.doctor_table tr .left_active,.doctor_table tr .right_active{
+	cursor: pointer;
+}
+.doctor_table tr .arrow_right{
+	border-left: 1px dashed #E5E5E5;
+	border-right: none;
+}
+.arrow_left img,.arrow_right img{
+	width: 35px;
+}
+.doctor_table tr .doctor_order{
+	border-right: none;
+	width: 980px;
+	overflow: hidden;
+	position: relative;
+}
+.doctor_order table{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.tb_header{
+	width: 140px!important;
+}
+.doctor_order table tr td{
+	width: 140px!important;
+}

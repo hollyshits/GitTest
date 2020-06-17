@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starry.dao.IUserDao">
+
+    <select id="getOrderById" parameterType="java.lang.Integer" resultType="com.starry.entity.Order">
+        select *
+        from uorder
+        where oNumber=#{id}
+    </select>
+
+
+    <insert id="minusIntegrity" parameterType="com.starry.entity.integrity">
+        insert into integrity(uid,docid,time,reason,score)
+        values (#{uid},#{docid},#{time},#{reason},#{score})
+    </insert>
+
+
+    <update id="plusRest" parameterType="java.util.HashMap">
+        update sche
+        set rest=rest+1
+        where sNumber=#{sNumber}
+    </update>
+
+
+    <update id="minusRest" parameterType="java.util.HashMap">
+        update sche
+        set rest=rest-1
+        where sNumber=#{schid}
+    </update>
+
+
+    <update id="changeOrderstatus" parameterType="java.util.HashMap">
+        update uorder
+        set status=#{status}
+        where oNumber=#{oid}
+    </update>
+
+
+
+    <update id="changePvstatus" parameterType="java.util.HashMap">
+        update perioddivision
+        set state=#{status}
+        where pid=#{ppid}
+    </update>
+
+
+
+    <select id="getDepartbydoc" resultType="com.starry.entity.Department">
+        select d.cNumber,d.dName,d.dDec,d.docnum
+        from department d,doctor doc
+        where d.cNumber=doc.cNumber
+        AND doc.dNumber=#{id}
+    </select>
+
+
+    <select id="getRandomDocList" resultType="com.starry.entity.Doctor">
+        select * from doctor
+        ORDER BY RAND() LIMIT 5
+    </select>
+
+	<select id="getdoc" resultType="com.starry.entity.Doctor">
+        select * from doctor
+        where
+        dNumber=#{id}
+    </select>
+
+
+	<select id="gethisdoc2" resultType="java.lang.Integer">
+        select id from uorder
+        where
+        docid=#{id}
+    </select>
+
+    <select id="getUserInter" resultType="com.starry.entity.integrity">
+        select i.*,d.name
+        from integrity i,doctor d
+        where
+        uid=#{id} and i.docid=d.dNumber
+        order by integrityId desc
+    </select>
+
+	<select id="gethisdoc" resultType="java.lang.Integer">
+        select docid from uorder
+        where
+        id=#{id}
+    </select>
+
+
+
+    <select id="selectodayorder" resultType="com.starry.entity.Order">
+        select *from uorder
+        where
+        oTime like concat(#{date},'%')
+    </select>
+
+
+	<select id="findUser" resultType="com.starry.entity.User">
+			select * from user
+		where
+		uname=#{uname} and pwd=#{pwd}
+	</select>
+
+	<select id="getuser" parameterType="java.lang.Integer" resultType="com.starry.entity.User">
+			select * from user
+			where
+			id=#{id}
+	</select>
+
+    <select id="getAlluser" parameterType="java.lang.Integer" resultType="com.starry.entity.User">
+			select * from user
+	</select>
+
+	<delete id="deleteById" parameterType="com.starry.entity.User">
+		delete from User
+		where id=#{id}
+	</delete>
+	<insert id="register"  parameterType="com.starry.entity.User">
+      insert into User(uname,pwd,tel,info) values(#{uname},#{pwd},#{tel},#{info})
+     </insert>
+     
+     <update id="updateUser" parameterType="com.starry.entity.User">
+     update User 
+     set uname=#{uname},pwd=#{pwd},tel=#{tel},info=#{info}
+     where id=#{id}
+     
+     </update>
+     
+     <insert id="insertOrder"  parameterType="com.starry.entity.Order">
+      INSERT into uorder(sNumber,id,oTime,price,status,info,docid,pid)
+       VALUES
+       (#{sNumber},	#{id},	#{oTime},#{price},#{status},#{info},#{docid},#{pid})
+     </insert>
+     <delete id="deleteOrderByid" parameterType="com.starry.entity.Order">
+     delete from uorder where oNumber=#{oNumber} 
+     </delete>
+     
+     <select id="getOrderByUserId" resultType="com.starry.entity.OrderInfo">
+		select uorder.oNumber,user.uname,doctor.name,uorder.price ,uorder.oTime,uorder.status
+		from uorder,sche,user,doctor 
+		where uorder.id=user.id and uorder.sNumber=sche.sNumber and sche.dNumber=doctor.dNumber and uorder.id=#{id} order by uorder.oTime desc
+	</select>
+	
+	<insert id="insertfeedback" parameterType="com.starry.entity.Feedback">
+	INSERT into feedback(fname,ftime,message) values(#{fname},#{ftime},#{message})
+	</insert>
+	<!--根据pid获取schid-->
+	<select id="getpv" resultType="com.starry.entity.perioddivision">
+		select * from perioddivision where pid=#{pid}
+	</select>
+	<select id="getsche" resultType="com.starry.entity.Sch">
+		select * from sche where sNumber=#{schid}
+	</select>
+</mapper>
